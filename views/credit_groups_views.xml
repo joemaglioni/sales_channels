@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="credit_groups_form_view" model="ir.ui.view">
+        <field name="name">credit_groups_form_view</field>
+        <field name="model">credit.groups</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="sale_channel_id"/>
+                        <field name="global_credit"/>
+                        <field name="used_credit"/>
+                        <field name="available_credit"/>
+                        <field name="company_currency_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="credit_groups_action_view">
+      <field name="name">Credit Groups</field>
+      <field name="res_model">credit.groups</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Credit Groups"
+                id="credit_groups_menu_root"
+                parent="sale.menu_sale_config"
+                sequence="30"
+      />
+      <menuitem name="Credit Groups"
+                id="credit_groups_menu"
+                parent="credit_groups_menu_root"
+                action="credit_groups_action_view"
+                sequence="1"
+      />
+</odoo>

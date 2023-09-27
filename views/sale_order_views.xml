@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_order_channels_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.channels.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="before">
+                <field name="sale_channel_id"/>
+                <field name="credit"
+                       decoration-success="credit == 'available_credit'"
+                       decoration-danger="credit == 'credit_blocked'"
+                       decoration-muted="credit == 'unlimited_credit'" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

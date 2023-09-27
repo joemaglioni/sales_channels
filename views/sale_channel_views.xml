@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+ <record id="sales_channels_form_view" model="ir.ui.view">
+        <field name="name">sales_channels_form_view</field>
+        <field name="model">sale.channel</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="warehouse_id"/>
+                        <field name="journal_id"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="sales_channels_tree_view" model="ir.ui.view">
+      <field name="name">sales_channels_tree_view</field>
+      <field name="model">sale.channel</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="sales_channels_action_view">
+      <field name="name">sales channels</field>
+      <field name="res_model">sale.channel</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="sales_channels.action_server">
+      <field name="name">sales_channels server</field>
+      <field name="model_id" ref="model_sales_channels_sales_channels"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="sales_channels" id="sales_channels.menu_root"/>
+-->
+      <menuitem name="Sales Channels"
+                id="sales_channels_menu_root"
+                parent="sale.menu_sale_config"
+                sequence="20"
+      />
+      <menuitem name="Sales Channels"
+                id="sales_channels_menu"
+                parent="sales_channels_menu_root"
+                action="sales_channels_action_view"
+                sequence="1"
+      />
+    <!-- menu categories -->
+<!--       <menuitem id="sales_channels_menu"-->
+<!--              name="Billing notice"-->
+<!--              action="action_Billing_notice"-->
+<!--              parent="sale.sale_menu_root"-->
+<!--              groups="pos_tommasi_custom.group_pos_in_charge"-->
+<!--              sequence="2"/>-->
+<!--
+    <menuitem name="Menu 1" id="sales_channels.menu_1" parent="sales_channels.menu_root"/>
+    <menuitem name="Menu 2" id="sales_channels.menu_2" parent="sales_channels.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="sales_channels.menu_1_list" parent="sales_channels.menu_1"
+              action="sales_channels.action_window"/>
+    <menuitem name="Server to list" id="sales_channels" parent="sales_channels.menu_2"
+              action="sales_channels.action_server"/>
+-->
+</odoo>
