@@ -6,7 +6,6 @@ class AccountMove(models.Model):
 
     sale_channel_id = fields.Many2one('sale.channel', string='Sale Channel')
 
-
     def get_total_inv_credit_channel(self):
         amount = 0
         for invoice in self:

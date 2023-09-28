@@ -60,4 +60,3 @@ class CreditGroups(models.Model):
         for group in self:
             group.used_credit = self._get_amount_used()
 
-

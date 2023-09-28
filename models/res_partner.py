@@ -12,13 +12,16 @@ class ResPartner(models.Model):
     credit_group_ids = fields.Many2many(
         'credit.groups', string='Credits Groups')
 
+    def write(self, vals):
+        group_ids = vals.get('credit_group_ids')
+        if group_ids:
+            if group_ids[0][2]:
+                groups = self.env['credit.groups'].search([(
+                    'id', 'in', group_ids[0][2]
+                )])
 
+                for group in groups:
+                    group.sale_channel_id._add_channel_code_reference()
 
+        return super(ResPartner, self).write(vals)
 
-    # @api.onchange('credit_group_ids')
-    # def _channel_control(self):
-    #     import wdb
-    #     wdb.set_trace()
-    #     a = ""
-    #
-    #     return True

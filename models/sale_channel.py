@@ -24,6 +24,9 @@ class SalesChannels(models.Model):
     ]
 
     @api.model
-    def _get_channel_code_reference(self):
+    def _add_channel_code_reference(self):
         sequence_model = self.env["ir.sequence"]
-        return sequence_model.next_by_code("sale.channel.code.sequence")
+        seq = sequence_model.next_by_code("sale.channel.code.sequence")
+        self.write({
+            'code': seq
+        })
